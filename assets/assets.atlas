@@ -1,0 +1,16 @@
+images {
+  image: "/assets/ball.png"
+}
+images {
+  image: "/assets/bg.png"
+}
+images {
+  image: "/assets/background.jpg"
+}
+images {
+  image: "/assets/red_hand_closed.png"
+}
+images {
+  image: "/assets/red_hand_open.png"
+}
+extrude_borders: 2

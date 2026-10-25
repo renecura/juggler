@@ -1,0 +1,72 @@
+local ALTO = 800
+local HAND = 240
+
+go.property("score", 0)
+go.property("score_target", 10)
+go.property("balls", 2)
+go.property("speed", 2.0)
+
+local function other_hand(hand)
+	return hand == "left" and "right" or "left"
+end
+
+local function hand_side(hand)
+	return hand == "left" and -1 or 1
+end
+
+local function hand_table(self, hand)
+	return hand == "left" and self.hand_left or self.hand_right
+end
+
+function init(self)
+	self.hand_left = {}
+	self.hand_right = {}
+
+	local side = "right"
+	
+	for i = 1, self.balls do
+		local id = factory.create("#ball_factory",
+			vmath.vector3(HAND * hand_side(side), 0, 0))
+		
+		table.insert(hand_table(self, side), id)
+		side = other_hand(side)
+	end	
+end
+
+function on_message(self, message_id, message)
+	if message_id == hash("score") then
+		self.score = self.score + message.points
+		print("Score: ", self.score)
+		msg.post("/scene#game_gui", "set_progress", {value = self.score / self.score_target})
+	end
+
+
+	
+	if message_id == hash("landed") then
+		print("Landed: ",message.target," -> ",table.maxn(hand_table(self, message.target)))
+		if table.maxn(hand_table(self, message.target)) > 0 then
+			print("GAME OVER! ", self.score)
+			self.score = 0
+		end
+		
+		table.insert(hand_table(self, message.target), message.ball)
+		sprite.play_flipbook("/hands#"..message.target, hash("red_hand_closed"))			
+	end
+
+	
+	if message_id == hash("fire") then
+		local ball = table.remove(hand_table(self, message.side))
+		if not ball then return end
+
+		if table.maxn(hand_table(self, message.side)) == 0 then
+			sprite.play_flipbook("/hands#"..message.side, hash("red_hand_open"))			
+		end
+		
+		msg.post(ball, "fire", { 
+			alto = ALTO,
+			hand = HAND * hand_side(other_hand(message.side)),
+			speed = self.speed,
+			target = other_hand(message.side)
+			})
+	end
+end

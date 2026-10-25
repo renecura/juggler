@@ -1,0 +1,63 @@
+script: "/game/game.gui_script"
+nodes {
+  size {
+    x: 300.0
+    y: 200.0
+  }
+  type: TYPE_BOX
+  id: "left_btn"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_SW
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 720.0
+  }
+  size {
+    x: 300.0
+    y: 200.0
+  }
+  type: TYPE_BOX
+  id: "right_btn"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_SE
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 360.0
+    y: 1200.0
+  }
+  size {
+    x: 500.0
+    y: 30.0
+  }
+  color {
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  }
+  type: TYPE_BOX
+  id: "progress_bg"
+  yanchor: YANCHOR_TOP
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 300.0
+    y: 30.0
+  }
+  type: TYPE_BOX
+  id: "progress_fill"
+  xanchor: XANCHOR_LEFT
+  parent: "progress_bg"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
