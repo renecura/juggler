@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/game/ball.script"
+  component: "/game/balls/ball.script"
 }
 embedded_components {
   id: "sprite"

@@ -1,9 +1,0 @@
-go.property("score", 1)
-
-
-function on_message(self, message_id, message, sender)
-	if message_id == hash("trigger_response") and message.enter then
-		msg.post("/scene", "score", { points = self.score })
-	end
-end
-

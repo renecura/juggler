@@ -1,0 +1,22 @@
+go.property("score", 1)
+
+function init(self)
+	self.base_scale = go.get_scale()
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("trigger_response") and message.enter then
+		msg.post("/scene", "score", { points = self.score })
+
+		sound.play("#sound"..math.random(5))
+		
+		go.cancel_animations(".", "scale")
+		go.set_scale(self.base_scale)
+		go.animate(".", "scale.y",
+			go.PLAYBACK_ONCE_PINGPONG,
+			1.2,
+			go.EASING_OUTQUAD,
+			0.2)
+	end
+end
+

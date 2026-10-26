@@ -1,9 +1,13 @@
 name: "game"
 instances {
-  id: "point_trigger"
-  prototype: "/game/point_trigger/point_trigger.go"
+  id: "anillo"
+  prototype: "/game/anillo/anillo.go"
   position {
-    y: 600.0
+    y: 650.0
+  }
+  scale3 {
+    x: 1.5
+    y: 1.5
   }
 }
 scale_along_z: 0
@@ -25,7 +29,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"ball_factory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/game/ball.go\\\"\\n"
+  "  data: \"prototype: \\\"/game/balls/ball.go\\\"\\n"
   "\"\n"
   "}\n"
   ""
@@ -90,8 +94,13 @@ embedded_instances {
   "  position {\n"
   "    x: 240.0\n"
   "  }\n"
+  "  rotation {\n"
+  "    z: 0.21643962\n"
+  "    w: 0.976296\n"
+  "  }\n"
   "  scale {\n"
-  "    x: -1.0\n"
+  "    x: -2.0\n"
+  "    y: 2.0\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"
@@ -111,9 +120,17 @@ embedded_instances {
   "  position {\n"
   "    x: -240.0\n"
   "  }\n"
+  "  rotation {\n"
+  "    z: -0.21643962\n"
+  "    w: 0.976296\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
   "}\n"
   ""
   position {
-    z: 2.0
+    z: -2.0
   }
 }
