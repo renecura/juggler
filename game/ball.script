@@ -11,6 +11,12 @@ function on_message(self, message_id, message)
 			message.alto,
 			go.EASING_OUTQUAD,
 			message.speed)
+
+		go.animate(".", "euler.z",
+			go.PLAYBACK_ONCE_FORWARD,
+			360 * 3 * message.hand/math.abs(message.hand),
+			go.EASING_LINEAR,
+			message.speed)
 		
 		go.animate(".", "position.x",
 			go.PLAYBACK_ONCE_FORWARD,

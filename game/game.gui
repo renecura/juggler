@@ -24,6 +24,10 @@ nodes {
     x: 300.0
     y: 30.0
   }
+  color {
+    y: 0.79607844
+    z: 0.18431373
+  }
   type: TYPE_BOX
   id: "progress_fill"
   xanchor: XANCHOR_LEFT
@@ -48,6 +52,7 @@ nodes {
   xanchor: XANCHOR_LEFT
   yanchor: YANCHOR_BOTTOM
   inherit_alpha: true
+  alpha: 0.15
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
@@ -68,6 +73,7 @@ nodes {
   xanchor: XANCHOR_RIGHT
   yanchor: YANCHOR_BOTTOM
   inherit_alpha: true
+  alpha: 0.15
   size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
