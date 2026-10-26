@@ -32,7 +32,7 @@ function init(self)
 		
 		table.insert(hand_table(self, side), id)
 		side = other_hand(side)
-	end	
+	end
 end
 
 function on_message(self, message_id, message)
@@ -40,6 +40,12 @@ function on_message(self, message_id, message)
 		self.score = self.score + message.points
 		print("Score: ", self.score)
 		msg.post("/scene#game_gui", "set_progress", {value = self.score / self.score_target})
+
+		if self.score >= self.score_target then
+			-- end_level()
+			msg.post("#powerup_selector", "show_powerups", {a = "speedup_1", b = "extra_ball_1"})
+		end
+
 	end
 
 

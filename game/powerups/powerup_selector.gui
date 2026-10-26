@@ -1,0 +1,131 @@
+script: "/game/powerups/powerup_selector.gui_script"
+fonts {
+  name: "druid_text_bold"
+  font: "/druid/fonts/druid_text_bold.font"
+}
+nodes {
+  position {
+    x: 360.0
+    y: 640.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "popup"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 720.0
+    y: 1280.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "blocker"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "popup"
+  inherit_alpha: true
+  alpha: 0.15
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -200.0
+  }
+  size {
+    x: 620.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "btn_ad"
+  parent: "popup"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_TEXT
+  text: "PICK ALL"
+  font: "druid_text_bold"
+  id: "text"
+  parent: "btn_ad"
+  inherit_alpha: true
+  outline_alpha: 0.0
+}
+nodes {
+  position {
+    x: -160.0
+    y: 100.0
+  }
+  type: TYPE_TEMPLATE
+  id: "card_a"
+  parent: "popup"
+  inherit_alpha: true
+  template: "/game/powerups/powerup_card.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "card_a/root"
+  parent: "card_a"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "card_a/icon"
+  parent: "card_a/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "card_a/title"
+  parent: "card_a/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 160.0
+    y: 100.0
+  }
+  type: TYPE_TEMPLATE
+  id: "card_b"
+  parent: "popup"
+  inherit_alpha: true
+  template: "/game/powerups/powerup_card.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "card_b/root"
+  parent: "card_b"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "card_b/icon"
+  parent: "card_b/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "card_b/title"
+  parent: "card_b/root"
+  template_node_child: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
