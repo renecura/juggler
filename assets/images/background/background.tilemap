@@ -1,4 +1,4 @@
-tile_set: "/assets/background.tilesource"
+tile_set: "/assets/images/background/background.tilesource"
 layers {
   id: "layer1"
   z: 0.0

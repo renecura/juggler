@@ -1,0 +1,64 @@
+local state = require("core.state")
+local powerups = require("core.powerups")
+
+local function unload_current(self)
+	if not self.current then return end
+	
+	local url = "#" .. self.current
+	msg.post(url, "disable")
+	msg.post(url, "final")
+	msg.post(url, "unload")
+end
+
+local function load_screen(self, name)
+	unload_current(self)
+	
+	self.current = name
+	msg.post("#" .. name, "load")
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	load_screen(self, "level")
+end
+
+
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("proxy_loaded") then
+		msg.post(sender, "enable")
+		return
+	end
+	
+	if message_id == hash("proxy_unloaded") then
+		self.current = nil
+		return 
+	end
+
+	if message_id == hash("level_ended") then
+		unload_current(self)
+		if message.won then
+			-- TODO: Show powerups
+			msg.post("/ui#powerups", "show_powerups", { a = "speedup_1", b = "extra_ball_1" })
+			print("Choose powerup")
+		else
+			-- TODO: show game over
+			print("Game over")
+		end
+		return 
+	end
+
+	-- on_level_win
+	
+
+	-- on_level_lose
+	
+	
+	-- on_powerup_chosen
+	
+	if message_id == hash("to_menu") then
+		load_screen(self, "menu")
+		return
+	end
+
+end

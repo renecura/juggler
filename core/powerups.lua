@@ -17,4 +17,17 @@ function M.picktwo()
 	return a.id, b.id
 end
 
+-- Power up
+function M.speedup(self, level)
+	self.speed = self.speed * (1 - 0.1 * level)
+end
+
+function M.extra_ball(self, level)
+	self.balls = self.balls + level
+end
+
+function M.multiplier(self, level)
+	self.multiplier = self.multi + level
+end
+
 return M

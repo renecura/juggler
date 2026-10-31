@@ -1,2 +1,30 @@
 name: "main"
 scale_along_z: 0
+embedded_instances {
+  id: "manager"
+  data: "components {\n"
+  "  id: \"manager\"\n"
+  "  component: \"/main/manager.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"level\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/screens/level/game.collection\\\"\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"menu\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/screens/menu/menu.collection\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "ui"
+  data: "components {\n"
+  "  id: \"powerups\"\n"
+  "  component: \"/screens/ui/powerups/powerup_selector.gui\"\n"
+  "}\n"
+  ""
+}

@@ -1,10 +1,7 @@
+local state = require("core.state")
+
 local ALTO = 800
 local HAND = 240
-
-go.property("score", 0)
-go.property("score_target", 10)
-go.property("balls", 2)
-go.property("speed", 2.0)
 
 local function other_hand(hand)
 	return hand == "left" and "right" or "left"
@@ -18,49 +15,72 @@ local function hand_table(self, hand)
 	return hand == "left" and self.hand_left or self.hand_right
 end
 
-function init(self)
+local function create_balls(self)
 	self.hand_left = {}
 	self.hand_right = {}
 
 	local side = "right"
-	
-	for i = 1, self.balls do
+
+	for i = 1, state.balls do
 		local pos = vmath.vector3(HAND * hand_side(side), 0, 0) + 
 		vmath.rotate(vmath.quat_rotation_z(i*1), vmath.vector3(20,0,0))
-		
+
 		local id = factory.create("#ball_factory",pos)
-		
+
 		table.insert(hand_table(self, side), id)
 		side = other_hand(side)
 	end
 end
 
+
+local function level_start(self)
+	self.score = 0
+	create_balls(self)
+end
+
+local function level_finish(self, won)
+	if self.ended then return end
+	self.ended = true
+	state.score = state.score + self.score
+	
+	msg.post("main:/manager#manager", "level_ended", {won = won})
+end
+
+local function level_win(self)
+	level_finish(self, true)
+end
+
+local function level_lose(self)
+	level_finish(self, false)
+end
+
+
+function init(self)
+	self.ended = false
+	level_start(self)
+end
+
+
+
 function on_message(self, message_id, message)
 	if message_id == hash("score") then
-		self.score = self.score + message.points
-		print("Score: ", self.score)
-		msg.post("/scene#game_gui", "set_progress", {value = self.score / self.score_target})
+		self.score = self.score + message.points * state.multi
+		msg.post("#HUD", "set_progress", {value = self.score / state.score_target})
 
-		if self.score >= self.score_target then
+		if self.score >= state.score_target then
 			-- end_level()
-			msg.post("#powerup_selector", "show_powerups", {a = "speedup_1", b = "extra_ball_1"})
+			level_win(self)
 		end
-
 	end
-
-
 	
 	if message_id == hash("landed") then
-		print("Landed: ",message.target," -> ",table.maxn(hand_table(self, message.target)))
 		if table.maxn(hand_table(self, message.target)) > 0 then
-			print("GAME OVER! ", self.score)
-			self.score = 0
+			level_lose(self)
 		end
 		
 		table.insert(hand_table(self, message.target), message.ball)
 		sprite.play_flipbook("/hands#"..message.target, hash("red_hand_closed"))			
 	end
-
 	
 	if message_id == hash("fire") then
 		local ball = table.remove(hand_table(self, message.side))
@@ -73,7 +93,7 @@ function on_message(self, message_id, message)
 		msg.post(ball, "fire", { 
 			alto = ALTO,
 			hand = HAND * hand_side(other_hand(message.side)),
-			speed = self.speed,
+			speed = state.speed,
 			target = other_hand(message.side)
 			})
 	end

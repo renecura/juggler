@@ -1,4 +1,4 @@
-image: "/assets/chevron-blue.png"
+image: "/assets/images/background/chevron-blue.png"
 tile_width: 256
 tile_height: 256
 collision_groups: "default"

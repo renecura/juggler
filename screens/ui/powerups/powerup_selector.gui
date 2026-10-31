@@ -1,4 +1,4 @@
-script: "/game/powerups/powerup_selector.gui_script"
+script: "/screens/ui/powerups/powerup_selector.gui_script"
 fonts {
   name: "druid_text_bold"
   font: "/druid/fonts/druid_text_bold.font"
@@ -78,7 +78,7 @@ nodes {
   id: "card_a"
   parent: "popup"
   inherit_alpha: true
-  template: "/game/powerups/powerup_card.gui"
+  template: "/screens/ui/powerups/powerup_card.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -107,7 +107,7 @@ nodes {
   id: "card_b"
   parent: "popup"
   inherit_alpha: true
-  template: "/game/powerups/powerup_card.gui"
+  template: "/screens/ui/powerups/powerup_card.gui"
 }
 nodes {
   type: TYPE_BOX

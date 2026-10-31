@@ -1,6 +1,6 @@
 components {
   id: "point_trigger"
-  component: "/game/anillo/anillo.script"
+  component: "/screens/level/anillo/anillo.script"
 }
 embedded_components {
   id: "collisionobject"
@@ -32,7 +32,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/assets.atlas\"\n"
+  "  texture: \"/assets/images/elements/assets.atlas\"\n"
   "}\n"
   ""
   position {
@@ -50,7 +50,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/assets.atlas\"\n"
+  "  texture: \"/assets/images/elements/assets.atlas\"\n"
   "}\n"
   ""
   position {

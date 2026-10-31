@@ -1,5 +1,5 @@
 local druid = require("druid.druid")
-local powerups = require("game.powerups.powerups")
+local powerups = require("core.powerups")
 
 local function on_pick_a()
 	print("Pick A")

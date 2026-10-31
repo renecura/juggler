@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/game/balls/ball.script"
+  component: "/screens/level/balls/ball.script"
 }
 embedded_components {
   id: "sprite"
@@ -9,7 +9,7 @@ embedded_components {
   "material: \"/builtins/materials/sprite.material\"\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/assets.atlas\"\n"
+  "  texture: \"/assets/images/elements/assets.atlas\"\n"
   "}\n"
   ""
   scale {

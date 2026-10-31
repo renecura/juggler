@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="5.9010102"
-     inkscape:cx="1643.4474"
-     inkscape:cy="52.279185"
+     inkscape:zoom="2.9505051"
+     inkscape:cx="1594.9812"
+     inkscape:cy="46.941116"
      inkscape:window-width="1920"
      inkscape:window-height="1012"
      inkscape:window-x="1912"
@@ -71,19 +71,25 @@
        y="0"
        width="16.933332"
        height="16.933334"
-       id="page541" />
+       id="page541"
+       inkscape:label="anillo" />
     <inkscape:page
        x="420.86667"
        y="0"
        width="16.933319"
        height="16.933334"
-       id="page4839" />
+       id="page4839"
+       inkscape:label="anillo-frente"
+       inkscape:export-filename="..\assets\anillo-frente.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <inkscape:page
        x="447.79999"
        y="0"
        width="16.933319"
        height="16.933334"
-       id="page4841" />
+       id="page4841"
+       inkscape:label="anillo-fondo" />
   </sodipodi:namedview>
   <defs
      id="defs2">

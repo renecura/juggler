@@ -1,4 +1,4 @@
-script: "/game/game.gui_script"
+script: "/screens/level/game.gui_script"
 nodes {
   position {
     x: 360.0

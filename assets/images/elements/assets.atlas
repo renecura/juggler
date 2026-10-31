@@ -1,0 +1,25 @@
+images {
+  image: "/assets/images/elements/ball.png"
+}
+images {
+  image: "/assets/images/elements/red_hand_closed.png"
+}
+images {
+  image: "/assets/images/elements/red_hand_open.png"
+}
+images {
+  image: "/assets/images/ui/logo-blue.png"
+}
+images {
+  image: "/assets/images/elements/red_hand_point.png"
+}
+images {
+  image: "/assets/images/elements/anillo-fondo.png"
+}
+images {
+  image: "/assets/images/elements/anillo-frente.png"
+}
+images {
+  image: "/assets/images/elements/anillo.png"
+}
+extrude_borders: 2
