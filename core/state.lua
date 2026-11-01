@@ -5,7 +5,7 @@ function M.reset()
 	M.score = 0
 	M.score_target = 3
 
-	M.balls = 1
+	M.balls = 2
 	M.speed = 2.0
 	M.multi = 1.0
 	

@@ -2,6 +2,7 @@ local state = require("core.state")
 
 local ALTO = 800
 local HAND = 240
+local END_DELAY = 1.2
 
 local function other_hand(hand)
 	return hand == "left" and "right" or "left"
@@ -41,9 +42,22 @@ end
 local function level_finish(self, won)
 	if self.ended then return end
 	self.ended = true
-	state.score = state.score + self.score
 	
-	msg.post("main:/manager#manager", "level_ended", {won = won})
+	state.score = state.score + self.score
+
+	if won then
+		sound.play("/scene#sound_victory")
+	else
+		sound.play("/scene#sound_gameover")
+	end
+
+	-- TODO: Disable input.
+	-- TODO: Disable anillo.
+	-- TODO: Disable points.
+
+	timer.delay(END_DELAY, false, function ()
+		msg.post("main:/manager#manager", "level_ended", {won = won})
+	end)
 end
 
 local function level_win(self)
@@ -65,7 +79,11 @@ end
 function on_message(self, message_id, message)
 	if message_id == hash("score") then
 		self.score = self.score + message.points * state.multi
-		msg.post("#HUD", "set_progress", {value = self.score / state.score_target})
+
+		msg.post("#HUD", "set_progress", {
+			score = self.score,
+			target = state.score_target
+		})
 
 		if self.score >= state.score_target then
 			-- end_level()

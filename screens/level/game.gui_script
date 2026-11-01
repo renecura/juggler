@@ -10,6 +10,8 @@ function init(self)
 	self.left  = gui.get_node("left_btn")
 	self.right = gui.get_node("right_btn")
 
+	self.score = gui.get_node("score")
+	
 	self.fill = gui.get_node("progress_fill")
 	set_progress(self, 0)
 end
@@ -26,7 +28,8 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("set_progress") then
-		set_progress(self, message.value)
+		set_progress(self, message.score / message.target)
+		gui.set_text(self.score, message.score)
 	end
 end
 

@@ -26,5 +26,9 @@ embedded_instances {
   "  id: \"powerups\"\n"
   "  component: \"/screens/ui/powerups/powerup_selector.gui\"\n"
   "}\n"
+  "components {\n"
+  "  id: \"gameover\"\n"
+  "  component: \"/screens/ui/gameover/gameover.gui\"\n"
+  "}\n"
   ""
 }

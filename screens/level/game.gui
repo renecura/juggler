@@ -1,8 +1,12 @@
 script: "/screens/level/game.gui_script"
+fonts {
+  name: "default"
+  font: "/assets/default.font"
+}
 nodes {
   position {
     x: 360.0
-    y: 1200.0
+    y: 1100.0
   }
   size {
     x: 500.0
@@ -75,6 +79,26 @@ nodes {
   inherit_alpha: true
   alpha: 0.15
   size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 360.0
+    y: 1200.0
+  }
+  scale {
+    x: 5.0
+    y: 5.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "default"
+  id: "score"
+  yanchor: YANCHOR_TOP
+  inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

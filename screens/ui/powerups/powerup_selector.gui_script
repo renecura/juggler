@@ -1,15 +1,19 @@
 local druid = require("druid.druid")
 local powerups = require("core.powerups")
 
-local function on_pick_a()
+local function on_pick_a(self)
 	print("Pick A")
+	msg.post(self.manager, "powerup_chosen", {powerup = self.powerup_a})
+	gui.set_enabled(self.popup, false)
 end
 
-local function on_pick_b()
+local function on_pick_b(self)
 	print("Pick B")
+	msg.post(self.manager, "powerup_chosen", {powerup = self.powerup_b})
+	gui.set_enabled(self.popup, false)
 end
 
-local function on_watch_ad()
+local function on_watch_ad(self)
 	print("Reward Ad")
 end
 
@@ -39,8 +43,11 @@ function final(self)    self.druid:final() end
 function update(self, dt) self.druid:update(dt) end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("show_powerups") then
+	self.manager = sender
+	if message_id == hash("show") then
 		print("Showing powerups...")
+		self.powerup_a = message.a
+		self.powerup_b = message.b
 		fill_card("card_a", message.a)
 		fill_card("card_b", message.b)
 		gui.set_enabled(self.popup, true)
