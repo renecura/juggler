@@ -36,6 +36,8 @@ end
 
 local function level_start(self)
 	self.score = 0
+	self.win = false
+	self.lose = false
 	create_balls(self)
 end
 
@@ -45,27 +47,30 @@ local function level_finish(self, won)
 	
 	state.score = state.score + self.score
 
-	if won then
-		sound.play("/scene#sound_victory")
-	else
-		sound.play("/scene#sound_gameover")
-	end
-
 	-- TODO: Disable input.
 	-- TODO: Disable anillo.
 	-- TODO: Disable points.
-
-	timer.delay(END_DELAY, false, function ()
-		msg.post("main:/manager#manager", "level_ended", {won = won})
-	end)
+	msg.post("main:/manager#manager", "level_ended", {won = won})
 end
 
 local function level_win(self)
-	level_finish(self, true)
+	if self.win then return end
+	self.win = true
+	
+	msg.post("#HUD", "powerup")
+	sound.play("/scene#sound_victory")
+	
+	-- level_finish(self, true)
 end
 
 local function level_lose(self)
-	level_finish(self, false)
+	if self.lose then return end
+	self.lose = true
+	
+	sound.play("/scene#sound_gameover")
+	timer.delay(END_DELAY, false, function ()
+		level_finish(self, false)
+	end)
 end
 
 
@@ -77,6 +82,13 @@ end
 
 
 function on_message(self, message_id, message)
+
+	if self.ended or self.lose then return end
+	
+	if message_id == hash("powerup") then
+		level_finish(self, true)
+	end
+	
 	if message_id == hash("score") then
 		self.score = self.score + message.points * state.multi
 

@@ -1,29 +1,37 @@
+local druid = require("druid.druid")
+
 local FULL_WIDTH = 500
 
 local function set_progress(self, p)       -- p entre 0 y 1
 	p = math.max(0, math.min(1, p))
-	gui.animate(self.fill, "size.x", FULL_WIDTH * p, gui.EASING_OUTBOUNCE, 0.1)
+	self.progress:to(p)
+
+	gui.set_scale(self.score, vmath.vector3(1.2))
+	gui.animate(self.score, "scale", vmath.vector3(1), gui.EASING_OUTBACK, 0.3)
+end
+
+local function fire(self, side)
+	msg.post("/scene", "fire", { side = side })
+end
+
+local function on_powerup(self)
+	msg.post("/scene", "powerup")
 end
 
 function init(self)
-	msg.post(".", "acquire_input_focus")
-	self.left  = gui.get_node("left_btn")
-	self.right = gui.get_node("right_btn")
-
-	self.score = gui.get_node("score")
+	-- msg.post(".", "acquire_input_focus")
+	self.druid = druid.new(self)
 	
-	self.fill = gui.get_node("progress_fill")
-	set_progress(self, 0)
-end
+	self.left  = self.druid:new_button("left_btn", function() fire(self, "left") end )
+	self.right = self.druid:new_button("right_btn", function() fire(self, "right") end)
 
-function on_input(self, action_id, action)
-	if action_id == hash("touch") and action.pressed then
-		if gui.pick_node(self.left, action.x, action.y) then
-			msg.post("/scene", "fire", { side = "left" })
-		elseif gui.pick_node(self.right, action.x, action.y) then
-			msg.post("/scene", "fire", { side = "right" })
-		end
-	end
+	self.powerup_btn = self.druid:new_button("powerup_btn", on_powerup)
+	self.powerup_node = gui.get_node("powerup_btn")
+	gui.set_enabled(self.powerup_node, false)
+	
+	self.progress = self.druid:new_progress("progress","x",0)
+	
+	self.score = gui.get_node("score")
 end
 
 function on_message(self, message_id, message, sender)
@@ -31,5 +39,18 @@ function on_message(self, message_id, message, sender)
 		set_progress(self, message.score / message.target)
 		gui.set_text(self.score, message.score)
 	end
+
+	if message_id == hash("powerup") then
+		gui.set_enabled(self.powerup_node, true)
+	end
+
+	self.druid:on_message(message_id, message, sender)
 end
 
+function final(self)    self.druid:final() end
+
+function update(self, dt) self.druid:update(dt) end
+
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

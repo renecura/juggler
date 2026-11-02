@@ -12,10 +12,6 @@ embedded_components {
   "  texture: \"/assets/images/elements/assets.atlas\"\n"
   "}\n"
   ""
-  scale {
-    x: 2.0
-    y: 2.0
-  }
 }
 embedded_components {
   id: "collisionobject"

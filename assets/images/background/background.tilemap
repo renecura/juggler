@@ -1,6 +1,6 @@
 tile_set: "/assets/images/background/background.tilesource"
 layers {
-  id: "layer1"
+  id: "layer"
   z: 0.0
   cell {
     x: 0
@@ -134,11 +134,6 @@ layers {
   }
   cell {
     x: 8
-    y: -4
-    tile: 0
-  }
-  cell {
-    x: -10
     y: -4
     tile: 0
   }

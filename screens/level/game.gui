@@ -9,7 +9,7 @@ nodes {
     y: 1100.0
   }
   size {
-    x: 500.0
+    x: 600.0
     y: 30.0
   }
   color {
@@ -24,8 +24,11 @@ nodes {
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
+  position {
+    x: -300.0
+  }
   size {
-    x: 300.0
+    x: 600.0
     y: 30.0
   }
   color {
@@ -33,61 +36,16 @@ nodes {
     z: 0.18431373
   }
   type: TYPE_BOX
-  id: "progress_fill"
+  id: "progress"
   xanchor: XANCHOR_LEFT
+  pivot: PIVOT_W
   parent: "progress_bg"
   inherit_alpha: true
 }
 nodes {
   position {
-    x: 100.0
-    y: 100.0
-  }
-  size {
-    x: 300.0
-    y: 300.0
-  }
-  color {
-    y: 0.79607844
-    z: 0.18431373
-  }
-  type: TYPE_PIE
-  id: "left_btn"
-  xanchor: XANCHOR_LEFT
-  yanchor: YANCHOR_BOTTOM
-  inherit_alpha: true
-  alpha: 0.15
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 620.0
-    y: 100.0
-  }
-  size {
-    x: 300.0
-    y: 300.0
-  }
-  color {
-    y: 0.79607844
-    z: 0.18431373
-  }
-  type: TYPE_PIE
-  id: "right_btn"
-  xanchor: XANCHOR_RIGHT
-  yanchor: YANCHOR_BOTTOM
-  inherit_alpha: true
-  alpha: 0.15
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
     x: 360.0
     y: 1200.0
-  }
-  scale {
-    x: 5.0
-    y: 5.0
   }
   size {
     x: 200.0
@@ -99,6 +57,60 @@ nodes {
   id: "score"
   yanchor: YANCHOR_TOP
   inherit_alpha: true
+}
+nodes {
+  position {
+    x: 300.0
+    y: 150.0
+  }
+  size {
+    x: 1000.0
+    y: 640.0
+  }
+  type: TYPE_BOX
+  id: "left_btn"
+  xanchor: XANCHOR_LEFT
+  pivot: PIVOT_SE
+  inherit_alpha: true
+  alpha: 0.39
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 420.0
+    y: 150.0
+  }
+  size {
+    x: 1000.0
+    y: 640.0
+  }
+  type: TYPE_BOX
+  id: "right_btn"
+  xanchor: XANCHOR_LEFT
+  pivot: PIVOT_SW
+  inherit_alpha: true
+  alpha: 0.34
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 360.0
+    y: 300.0
+  }
+  size {
+    x: 150.0
+    y: 150.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_PIE
+  id: "powerup_btn"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

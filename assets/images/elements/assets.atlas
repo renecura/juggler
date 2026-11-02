@@ -8,9 +8,6 @@ images {
   image: "/assets/images/elements/red_hand_open.png"
 }
 images {
-  image: "/assets/images/ui/logo-blue.png"
-}
-images {
   image: "/assets/images/elements/red_hand_point.png"
 }
 images {
